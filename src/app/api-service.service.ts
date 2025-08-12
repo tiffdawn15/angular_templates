@@ -27,7 +27,7 @@ export class ApiService {
 
 /**
  *  Switch Map: 
- *  -- Cancels the pervious inner observable when a new value is emitted by the source observable
+ *  -- Cancels the pervious inner olsbservable when a new value is emitted by the source observable
  * -- Use when only the latest result matters
  * -- (Serach box input)
  * 
