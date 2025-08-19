@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ContactService } from '../contact.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact-form',
   standalone: true,
-  imports: [],
+  imports: [
+    ReactiveFormsModule, 
+  ],
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.scss'
 })
@@ -19,7 +22,6 @@ export class ContactFormComponent {
   constructor(private contactService: ContactService) {}
 
   onSubmit() {
-    console.log(this.contactForm.value);
     const from = {
       name:
         this.contactForm?.get("name")?.value !== null
@@ -34,6 +36,7 @@ export class ContactFormComponent {
         email: "tiffanymesser15@gmail.com",
       },
     ];
+
     // TODO: Implement Good object practices here
     const message = {
       sender: from,
@@ -42,8 +45,6 @@ export class ContactFormComponent {
       subject: "Email from our Website",
       replyTo: from,
     };
-
-    console.log(message);
 
     this.contactService.sendEmail(message).subscribe(
       (response) => console.log("Success!", response),
